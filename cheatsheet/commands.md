@@ -42,6 +42,10 @@ folders. Use after creating/moving files to confirm placement.
 ls -la
 Lists all files in current folder, including hidden ones (like .env).
 
+ls -la | grep <text>
+Lists files, filters output to lines containing the given text 
+(e.g. ls -la | grep env to check for .env files).
+
 mkdir <folder-name>
 Creates a new folder.
 
@@ -116,9 +120,11 @@ upstream for future pushes.
 feat(scope): description   → new feature/functionality
 docs: description           → documentation only
 chore: description          → setup/config/dependency changes
+refactor(scope): description → code restructure, no behavior change
 
 Examples used so far:
 feat(auth): add LoginPage POM class with data-test locators
 docs: add setup notes for env baseURL configuration
 chore: add dotenv dependency
 docs: consolidate framework structure into single status file
+refactor(auth): extract BasePage, LoginPage now extends it

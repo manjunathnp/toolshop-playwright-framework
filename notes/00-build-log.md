@@ -6,7 +6,7 @@ one-line reason per major step. Updated every session.
 
 ---
 
-## Day 1 — [date]
+## Day 1 — Jul 17, 2026
 
 1. Scaffolded project — npm init playwright@latest 
    (why: standard Playwright + TypeScript starting point)
@@ -41,5 +41,34 @@ one-line reason per major step. Updated every session.
 
 ---
 
-## Day 2 — [date]
+## Day 2 — Jul 18, 2026
+
+1. Built pages/BasePage.ts 
+   (why: shared base class for common page properties/methods, 
+   avoids repeating page setup in every page class)
+
+2. Refactored LoginPage.ts to extend BasePage 
+   (why: removes duplicate constructor/property, inherits from 
+   BasePage instead)
+
+3. Removed unused Page import from LoginPage.ts 
+   (why: no longer directly referenced after refactor, caught via 
+   review)
+
+4. Verified refactor compiles cleanly — npx tsc --noEmit 
+   (why: confirm inheritance change introduced no errors)
+
+5. Committed and pushed BasePage + LoginPage changes 
+   (why: checkpoint working refactor before moving to next concept)
+
+6. Created cheatsheet/commands.md 
+   (why: separate quick command reference from concept notes in notes/)
+
+7. Revised full project timetable with actual calendar dates, 
+   accounting for interview deadline and unavailable days (Aug 8-10) 
+   (why: align learning pace with real constraint, not open-ended estimate)
+
+---
+
+## Day 3 — [date]
 (next entries go here)
