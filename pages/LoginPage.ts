@@ -1,8 +1,6 @@
-import { Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class LoginPage{
-
-    constructor(private page:Page) {}
+export class LoginPage extends BasePage{
 
     async login(email:string, password:string){
         await this.page.getByTestId('email').fill(email);
