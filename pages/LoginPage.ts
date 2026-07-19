@@ -6,6 +6,8 @@ export class LoginPage extends BasePage{
     private passwordInput = this.page.getByTestId('password');
     private loginButton = this.page.getByTestId('login-submit');
     private loginErrorLocator = this.page.getByTestId('login-error');
+    private emailErrorLocator = this.page.getByTestId('email-error');
+    private passwordErrorLocator = this.page.getByTestId('password-error');
 
     async login(email:string, password:string){
         await this.emailInput.fill(email);
@@ -13,7 +15,16 @@ export class LoginPage extends BasePage{
         await this.loginButton.click();
     }
 
-    async getErrorMessage():Promise<string|null>{
+    async getLoginErrorMessage():Promise<string|null>{
         return await this.loginErrorLocator.textContent();
     }
+
+    async getEmailErrorMessage():Promise<string|null>{
+        return await this.emailErrorLocator.textContent();
+    }
+
+    async getPasswordErrorMessage():Promise<string|null>{
+        return await this.passwordErrorLocator.textContent();
+    }
+    
 }
