@@ -7,4 +7,9 @@ export class LoginPage extends BasePage{
         await this.page.getByTestId('password').fill(password);
         await this.page.getByTestId('login-submit').click();
     }
+
+    async getErrorMessage():Promise<string|null>{
+        const errorLocator = this.page.getByTestId('login-error');
+        return await errorLocator.textContent();
+    }
 }
