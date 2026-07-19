@@ -8,3 +8,4 @@ node_modules/
 /playwright/.auth/
 .env
 learning-log/
+notes/00-build-log.md
