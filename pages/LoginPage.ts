@@ -2,14 +2,18 @@ import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage{
 
+    private emailInput = this.page.getByTestId('email');
+    private passwordInput = this.page.getByTestId('password');
+    private loginButton = this.page.getByTestId('login-submit');
+    private loginErrorLocator = this.page.getByTestId('login-error');
+
     async login(email:string, password:string){
-        await this.page.getByTestId('email').fill(email);
-        await this.page.getByTestId('password').fill(password);
-        await this.page.getByTestId('login-submit').click();
+        await this.emailInput.fill(email);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
     }
 
     async getErrorMessage():Promise<string|null>{
-        const errorLocator = this.page.getByTestId('login-error');
-        return await errorLocator.textContent();
+        return await this.loginErrorLocator.textContent();
     }
 }
