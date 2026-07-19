@@ -12,12 +12,11 @@ toolshop-playwright-framework/
 │   │   ├── products/
 │   │   ├── cart/
 │   │   └── users/
-│   ├── e2e-cross-validation/
-│   └── example.spec.ts
+│   └── e2e-cross-validation/
 │
 ├── pages/
-│   ├── LoginPage.ts
 │   ├── BasePage.ts
+│   ├── LoginPage.ts
 │   ├── RegisterPage.ts
 │   ├── HomePage.ts
 │   ├── ProductPage.ts
@@ -50,11 +49,8 @@ toolshop-playwright-framework/
 │   └── types.ts
 │
 ├── notes/
-│   ├── 01-env-baseurl-setup.md
-│   └── framework-scaffold.md
-│
+├── cheatsheet/
 ├── learning-log/
-│   └── session-log.md
 │
 ├── .github/
 │   └── workflows/
