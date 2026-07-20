@@ -1,4 +1,5 @@
 import { test, expect } from '../../../fixtures/pages.fixture';
+import { customerUser, invalidUser } from '../../../test-data/staticUsers';
 
 test.describe("Login Scenarios Validations", () => {
   test.beforeEach(async ({ page }) => {
@@ -8,7 +9,7 @@ test.describe("Login Scenarios Validations", () => {
   test("Login with valid credentials", async ({ loginPage, page }) => {
 
     await expect(page).toHaveURL(/practicesoftwaretesting/);
-    await loginPage.login("customer@practicesoftwaretesting.com", "welcome01");
+    await loginPage.login(customerUser.email, customerUser.password);
     await expect(page.getByTestId("nav-home")).toBeVisible();
   });
 
@@ -16,10 +17,8 @@ test.describe("Login Scenarios Validations", () => {
 
     const expectedLoginErrorMessage: string = "Invalid email or password";
     await expect(page).toHaveURL(/practicesoftwaretesting/);
-    await loginPage.login(
-      "customer@practicesoftwaretestinginvalid.com",
-      "invalidwelcome01",
-    );
+
+    await loginPage.login(invalidUser.email, invalidUser.password);
 
     const actualLoginErrorMessage = await loginPage.getLoginErrorMessage();
     expect(actualLoginErrorMessage).toBe(expectedLoginErrorMessage);
@@ -30,19 +29,30 @@ test.describe("Login Scenarios Validations", () => {
     const expectedPasswordErrorMessage = "Password is required";
 
     await expect(page).toHaveURL(/practicesoftwaretesting/);
-    await loginPage.login("customer@practicesoftwaretesting.com", "");
+    await loginPage.login(customerUser.email, "");
 
     const actualPasswordErrorMessage =
       await loginPage.getPasswordErrorMessage();
     expect(actualPasswordErrorMessage).toBe(expectedPasswordErrorMessage);
   });
 
+  test('login with valid email and invalid password', async({ loginPage, page }) => {
+    const expectedErrorMessage = "Invalid email or password";
+
+    await expect(page).toHaveURL(/practicesoftwaretesting/);
+    await loginPage.login(customerUser.email, invalidUser.password);
+
+    const actualErrorMessage = await loginPage.getLoginErrorMessage();
+    expect(actualErrorMessage).toBe(expectedErrorMessage);
+  })
+
   test("login with blank email and valid password", async ({ loginPage, page }) => {
 
     const expectedEmailErrorMessage = "Email is required";
 
     await expect(page).toHaveURL(/practicesoftwaretesting/);
-    await loginPage.login("", "welcome01");
+
+    await loginPage.login("", customerUser.password);
 
     const actualEmailErrorMessage = await loginPage.getEmailErrorMessage();
     expect(actualEmailErrorMessage).toBe(expectedEmailErrorMessage);
