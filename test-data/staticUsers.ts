@@ -1,4 +1,5 @@
 import { LoginCredentials } from "./types";
+import { faker } from '@faker-js/faker';
 
 export const customerUser: LoginCredentials = {
     email: process.env.TEST_CUSTOMER_EMAIL || 'customer@practicesoftwaretesting.com',
@@ -19,3 +20,8 @@ export const invalidUser: LoginCredentials = {
     email: process.env.TEST_INVALID_EMAIL || 'invalidemail@practicesoftwaretesting.com',
     password: process.env.TEST_INVALID_PASSWORD || 'invalidpassword'
 }
+
+export const nonExistentUser: LoginCredentials = {
+  email: faker.internet.email(),
+  password: 'anyPassword123',
+};

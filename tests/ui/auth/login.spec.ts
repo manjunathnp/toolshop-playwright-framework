@@ -1,18 +1,18 @@
 import { test, expect } from '../../../fixtures/pages.fixture';
 import { customerUser, invalidUser } from '../../../test-data/staticUsers';
 import { LOGIN_ERRORS } from '../../../utils/constants';
+import { nonExistentUser } from '../../../test-data/staticUsers';
 
 test.describe("Login Scenarios Validations", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/auth/login");
   });
 
-  test("Login with valid credentials", async ({ loginPage, page }) => {
-
-    await expect(page).toHaveURL('/auth/login');    
-    await loginPage.login(customerUser.email, customerUser.password);
-    await expect(page.getByTestId("nav-home")).toBeVisible();
-  });
+test("Login with valid credentials", async ({ loginPage, page, freshUser }) => {
+  await expect(page).toHaveURL('/auth/login');
+  await loginPage.login(freshUser.email, freshUser.password);
+  await expect(page.getByTestId("nav-home")).toBeVisible();
+});
 
   test("Login with invalid email and invalid password", async ({ loginPage, page }) => {
 
@@ -34,14 +34,13 @@ test.describe("Login Scenarios Validations", () => {
     expect(actualPasswordErrorMessage).toBe(LOGIN_ERRORS.PASSWORD_REQUIRED);
   });
 
-  test('login with valid email and invalid password', async({ loginPage, page }) => {
+test('login with valid email and invalid password', async ({ loginPage, page }) => {
+  await expect(page).toHaveURL('/auth/login');
+  await loginPage.login(nonExistentUser.email, invalidUser.password);
 
-    await expect(page).toHaveURL('/auth/login');
-    await loginPage.login(customerUser.email, invalidUser.password);
-
-    const actualErrorMessage = await loginPage.getLoginErrorMessage();
-    expect(actualErrorMessage).toBe(LOGIN_ERRORS.INVALID_CREDENTIALS);
-  })
+  const actualErrorMessage = await loginPage.getLoginErrorMessage();
+  expect(actualErrorMessage).toBe(LOGIN_ERRORS.INVALID_CREDENTIALS);
+});
 
   test("login with blank email and valid password", async ({ loginPage, page }) => {
 
