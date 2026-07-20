@@ -8,3 +8,25 @@ export interface LoginResponse {
     token_type:string,
     expires_in:string
 }
+
+export interface UserResponse {
+    first_name:string, 
+    last_name:string,
+    address:{
+        street:string
+        house_number:string | null,
+        city:string,
+        state:string | null,
+        country:string
+        postal_code:string | null
+    },
+    phone:string | null,
+    dob:string,
+    email:string,
+    id:string,
+    provider:string | null,
+    totp_enabled:boolean,
+    enabled:boolean,
+    failed_login_attempts:number | null,
+    created_at:string
+}
