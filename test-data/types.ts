@@ -1,4 +1,3 @@
-// LoginCredentials interface has the below email and password attributes of type string
 export interface LoginCredentials {
   email: string;
   password: string;
@@ -37,4 +36,12 @@ export interface UserResponse {
     enabled:boolean,
     failed_login_attempts:number | null,
     created_at:string
+}
+
+export interface Product{
+  id: string, 
+  name: string, 
+  description: string,
+  price: number,
+  in_stock: boolean
 }

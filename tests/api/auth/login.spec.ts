@@ -12,7 +12,10 @@ test("login via API returns access token", async ({ authApiClient }) => {
 });
 
 test('getCurrentUser returns real user profile', async ({ authApiClient }) => {
-  const loginResponse = await authApiClient.login(customer2User.email, customer2User.password);
+  const loginResponse = await authApiClient.login(
+    customer2User.email, 
+    customer2User.password
+  );
   const user = await authApiClient.getCurrentUser(loginResponse.access_token);
 
   expect(user.email).toBe(customer2User.email);
