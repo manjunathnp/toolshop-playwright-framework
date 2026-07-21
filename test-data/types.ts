@@ -1,3 +1,4 @@
+// LoginCredentials interface has the below email and password attributes of type string
 export interface LoginCredentials {
   email: string;
   password: string;
